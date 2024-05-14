@@ -19,7 +19,7 @@ async function getWeather() {
               units: 'metric'
           },
       });
-
+      console.log(response);
       const currentTemperature = response.data.list[0].main.temp;
      
       document.querySelector('.weather-temp').textContent = Math.round(currentTemperature) + 'ºC';
@@ -80,11 +80,6 @@ async function getWeather() {
   }
 }
 
-
-
-
-
-
 function getWeatherIcon(iconCode) {
   const iconBaseUrl = 'https://openweathermap.org/img/wn/';
   const iconSize = '@2x.png';
@@ -95,3 +90,4 @@ document.addEventListener("DOMContentLoaded", function () {
   getWeather();
   setInterval(getWeather, 900000);
 });
+

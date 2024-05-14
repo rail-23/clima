@@ -7,7 +7,53 @@
 * {
   box-sizing: border-box;
   line-height: 1.25em;
+  border: #ffffff 1px dotted;
+  
 }
+
+
+.container{
+  border: #ffffff 8px dotted;
+
+}
+.weather-side{
+  border: #5151E5 8px solid;
+}
+/* .weather-gradient{ 
+  border: #ff0505 10px solid;
+
+} */
+
+.date-container{
+  border: #03ffff 10px solid;
+
+}
+.weather-container{
+  border: #8503ff 10px solid;
+
+}
+
+
+/*info*/
+.info-side{
+  border: #ffffff 10px solid;
+
+}
+.today-info-container{
+  border: #ff0000 10px solid;
+
+}
+.week-container{
+  border: #2f00ff 10px solid;
+
+}
+
+
+
+
+
+
+
 
 .clear {
   clear: both;
