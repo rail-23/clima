@@ -1,0 +1,80 @@
+.container{
+  max-width: 1100px;
+  padding: 0 30px;
+}
+  /*clima*/
+ *{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* border: 1px solid blue; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+
+.weather-card{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+background: #e0e0e0;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+  
+  width: 400px;
+  margin: 50px;
+}
+
+ /*weather side*/
+
+ .weather-side{
+  display: flex;
+  justify-content: center;
+}
+ /*today-side*/
+ .today-side{
+  border-right: 2px solid rgb(175, 175, 175);
+ }
+ .hoycont-side{
+
+  display: flex;
+ }
+ .img-cont{
+  width: 100px;
+ }
+ .imagen-clima{
+  width: 100%;
+ }
+ 
+ .temp-cont{
+  /* border: orange 4px solid; */
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+ }
+ .dia-cont{}
+ .temperatura-value{
+  font-size: 2rem;
+ }
+ .ubicacioncont-side{
+  text-align: center;
+  padding: 10px ;
+}
+ /*wh-side*/
+ .wh-side{
+  padding: 10px;
+  font-size: 1rem;
+ }
+ .humedadcont-side{}
+ .titelhumedad-side{}
+ .valuehumedad-side{}
+ .vientocont-side{}
+ .titleviento-side{}
+ .valueviento-side{}
+ /*info side*/
+ .info-side{
+  /* border: red solid 2px; */
+  height: 150px;
+ }
