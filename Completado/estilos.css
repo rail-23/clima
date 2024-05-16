@@ -77,17 +77,18 @@ box-shadow:  20px 20px 60px #bebebe,
  .info-side{
   /* border: red solid 2px; */
   height: 150px;
+  font-size: 0.7rem;
  }
 .info-week{
-  border: 1px solid rgb(0, 0, 0);
+
   width: 360px;
   height: 140px;
   display: flex;
   padding: 10px;
-
+  gap: 15px;
 }
 .info-day1,.info-day2,.info-day3,.info-day4{
-  border: 1px red solid;
+
   width: 25%;
   height: 100%;
   text-align: center;
@@ -96,13 +97,20 @@ box-shadow:  20px 20px 60px #bebebe,
   justify-content: center;
   align-items: center;
 }
-*{
+/* *{
   border: 1px solid black;
-}
+} */
 .imgday1-cont,.imgday2-cont,.imgday3-cont,.imgday4-cont{
   width: 50px;
 
 }
 .imagen-climaday1,.imagen-climaday2,.imagen-climaday3,.imagen-climaday4{
   width: 100%;
+  
+}
+.info-day2{
+  border-radius: 20px;
+background: #e0e0e0;
+box-shadow: inset 20px 20px 60px #bebebe,
+            inset -20px -20px 60px #ffffff;
 }
