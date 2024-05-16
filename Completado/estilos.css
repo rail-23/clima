@@ -78,3 +78,8 @@ box-shadow:  20px 20px 60px #bebebe,
   /* border: red solid 2px; */
   height: 150px;
  }
+.info-week{
+  border: 1px solid black;
+  width: 360px;
+  height: 140px;
+}

@@ -185,6 +185,34 @@ class weathercard extends HTMLElement {
     infoside.classList.add("info-side");
     weathercontainer.appendChild(infoside);
 
+    
+    const infoweek = document.createElement("div");
+    infoweek.classList.add("info-week");
+    infoside.appendChild(infoweek);
+
+    //info day box
+    // //info day 1
+    // const infodayl = document.createElement("div");
+    // infodayl.classList.add("info-day1");
+    // infoweek.appendChild("infodayl")
+
+
+
+    // //info day 2
+    // const infoday2 = document.createElement("li");
+    // infoday.classList.add("info-day2 box");
+    // infoweek.appendChild("infoday")
+
+    // //info day 3
+    // const infoday3 = document.createElement("li");
+    // infoday.classList.add("info-day3 box");
+    // infoweek.appendChild("infoday")
+
+    // //info day 4
+    // const infoday4 = document.createElement("li");
+    // infoday.classList.add("info-day4 box");
+    // infoweek.appendChild("infoday")
+
 
 
 
