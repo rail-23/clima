@@ -90,4 +90,19 @@ box-shadow:  20px 20px 60px #bebebe,
   border: 1px red solid;
   width: 25%;
   height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+*{
+  border: 1px solid black;
+}
+.imgday1-cont,.imgday2-cont,.imgday3-cont,.imgday4-cont{
+  width: 50px;
+
+}
+.imagen-climaday1,.imagen-climaday2,.imagen-climaday3,.imagen-climaday4{
+  width: 100%;
 }
