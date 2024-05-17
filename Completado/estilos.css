@@ -1,8 +1,4 @@
-.container{
-  max-width: 1100px;
-  padding: 0 30px;
-}
-  /*clima*/
+
  *{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   /* border: 1px solid blue; */
@@ -10,7 +6,42 @@
   padding: 0;
   box-sizing: border-box;
  }
-
+ /* utilidades */
+ .container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: auto;
+  padding: 0 20px;
+}
+/* header */
+#mainheader .container{
+  height: 100vh;
+}
+/* nav */
+#mainheader .container .navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  
+}
+#mainheader .container .navbar label{
+  margin-right: 20px;
+}
+#search{
+  border-radius: 20px;
+background: #f2f2f2;
+box-shadow: inset 20px 20px 60px #f7f7f7,
+            inset -20px -20px 60px #ffffff;
+            height: 30px;
+            width: 800px;
+            padding-left: 30px;
+}
+/* showcase */
+.showcase{
+  display: flex;
+}
+/* component weather card */
 .weather-card{
   padding: 20px;
   display: flex;
@@ -77,4 +108,40 @@ box-shadow:  20px 20px 60px #bebebe,
  .info-side{
   /* border: red solid 2px; */
   height: 150px;
+  font-size: 0.7rem;
  }
+.info-week{
+
+  width: 360px;
+  height: 140px;
+  display: flex;
+  padding: 10px;
+  gap: 15px;
+}
+.info-day1,.info-day2,.info-day3,.info-day4{
+
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* *{
+  border: 1px solid black;
+} */
+.imgday1-cont,.imgday2-cont,.imgday3-cont,.imgday4-cont{
+  width: 50px;
+
+}
+.imagen-climaday1,.imagen-climaday2,.imagen-climaday3,.imagen-climaday4{
+  width: 100%;
+  
+}
+.info-day2{
+  border-radius: 20px;
+background: #e0e0e0;
+box-shadow: inset 20px 20px 60px #bebebe,
+            inset -20px -20px 60px #ffffff;
+}
