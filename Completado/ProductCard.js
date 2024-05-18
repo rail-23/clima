@@ -278,10 +278,22 @@ const getWeatherDetails =(cityName,lat,lon)=>{
   fetch(API_Weather)
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+
+    // filtramos los pronosticos para obtener un solo pronostico por dia, por 6 dias
+
+    const uniqueForecastDays = []; 
+    
+    const FiveForecastDays = data.list.filter(forecast=>{
+      const forecastDate=  new Date(forecast.dt_txt).getDate(); 
+      if(!uniqueForecastDays.includes(forecastDate)){
+        return uniqueForecastDays.push(forecastDate);
+      }
+    });
+
+    console.log(FiveForecastDays)
   })
   .catch(()=>{
-    alert("se a encontrado un error mientras de buscaba la coordenada")
+    alert("se a encontrado un error mientras de buscaba la coordenada");
   })
 }
 
@@ -297,7 +309,7 @@ searchButton.addEventListener('click', function () {
     if(!data.length) return alert(`no se encontraron las coordenadas para:${cityName}`);
     const { name, lat, lon } = data[0];
     getWeatherDetails(name,lat,lon);
-    console.log(data);
+    //console.log(data[0]);
   })
   .catch(()=>{
   alert("se a encontrado un error mientras de buscaba una coodenada")
