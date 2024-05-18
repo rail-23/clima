@@ -262,3 +262,50 @@ class weathercard extends HTMLElement {
   }
 }
 customElements.define("weather-card", weathercard);
+///////////////////////////////////////////////////////////////////////////////////////////////
+                    /*logica para consumir un api*/
+'use strict';
+const ApiKey='1bafec787c78a46d0d38f49740ef0c64';
+
+const cityInput=document.querySelector('.cityImput');
+const searchButton=document.querySelector('.BTNsearch');
+const inputSearch = document.getElementById('city');
+
+
+const getWeatherDetails =(cityName,lat,lon)=>{
+  const API_Weather=`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}`;
+
+  fetch(API_Weather)
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+  })
+  .catch(()=>{
+    alert("se a encontrado un error mientras de buscaba la coordenada")
+  })
+}
+
+/*funcion para obtener el contenido de la barra de busqueda(input) y las coordenadas de la ciudad a buscar*/
+searchButton.addEventListener('click', function () {
+  var cityName = inputSearch.value.trim(); //obtenemos el contenido de input "la ciudad" y con trin()borramos los espacios
+  if(!cityName)return;
+  const CODE_URL_API = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${ApiKey}`;
+
+  fetch(CODE_URL_API) //obtenemos las coordenadas de la ciudad (latitud,longitud y nombre) que esta en la API
+  .then(res=>res.json())
+  .then(data=>{
+    if(!data.length) return alert(`no se encontraron las coordenadas para:${cityName}`);
+    const { name, lat, lon } = data[0];
+    getWeatherDetails(name,lat,lon);
+    console.log(data);
+  })
+  .catch(()=>{
+  alert("se a encontrado un error mientras de buscaba una coodenada")
+  })
+
+});
+
+
+
+
+
