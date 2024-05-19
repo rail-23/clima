@@ -262,15 +262,36 @@ class weathercard extends HTMLElement {
   }
 }
 customElements.define("weather-card", weathercard);
-///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     /*logica para consumir un api*/
 'use strict';
 const ApiKey='1bafec787c78a46d0d38f49740ef0c64';
 
 const cityInput=document.querySelector('.cityImput');
 const searchButton=document.querySelector('.BTNsearch');
+const CardDivs=document.querySelector('.CardInsert');
 const inputSearch = document.getElementById('city');
 
+const createWeathercard = (wheatherItem)=>{
+  return`          
+  <weather-card
+  class="card"
+  humedad="${wheatherItem.main.humidity}"
+  viento="${wheatherItem.wind.speed}"
+  ubicacion="Santa cruz de la Sierra"
+  imagen="https://openweathermap.org/img/wn/${wheatherItem.weather[0].icon}@2x.png"
+  dia="${wheatherItem.dt_txt.split(" ")[0]}"
+  temp="${(wheatherItem.main.temp - 273.15).toFixed(2)}"
+  day1="Lunes"
+  day1temp="24"
+  day2="martes"
+  day2temp="25"
+  day3="miercoles"
+  day3temp="15"
+  day4="jueves"
+  day4temp="18"
+></weather-card>`;
+}
 
 const getWeatherDetails =(cityName,lat,lon)=>{
   const API_Weather=`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}`;
@@ -290,7 +311,11 @@ const getWeatherDetails =(cityName,lat,lon)=>{
       }
     });
 
-    console.log(FiveForecastDays)
+    console.log(FiveForecastDays);
+    FiveForecastDays.forEach(wheatherItem => {
+      CardDivs.insertAdjacentHTML("beforeend",createWeathercard(wheatherItem));
+    });
+
   })
   .catch(()=>{
     alert("se a encontrado un error mientras de buscaba la coordenada");
