@@ -310,12 +310,10 @@ const getWeatherDetails =(cityName,lat,lon)=>{
         return uniqueForecastDays.push(forecastDate);
       }
     });
-
     console.log(FiveForecastDays);
     FiveForecastDays.forEach(wheatherItem => {
       CardDivs.insertAdjacentHTML("beforeend",createWeathercard(wheatherItem));
     });
-
   })
   .catch(()=>{
     alert("se a encontrado un error mientras de buscaba la coordenada");
@@ -324,6 +322,7 @@ const getWeatherDetails =(cityName,lat,lon)=>{
 
 /*funcion para obtener el contenido de la barra de busqueda(input) y las coordenadas de la ciudad a buscar*/
 searchButton.addEventListener('click', function () {
+  CardDivs.innerHTML="";
   var cityName = inputSearch.value.trim(); //obtenemos el contenido de input "la ciudad" y con trin()borramos los espacios
   if(!cityName)return;
   const CODE_URL_API = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${ApiKey}`;
