@@ -1,6 +1,8 @@
 *{
-  border: 1px solid black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* border: 1px solid black; */
   margin: 0;
+  color-scheme: ;
   padding: 0;
   box-sizing: border-box;  
 }
@@ -32,7 +34,7 @@ box-shadow:  20px 20px 60px #bebebe,
              -20px -20px 60px #ffffff;
 }
 .today{
-  width: 50%;
+  width: 70%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -57,7 +59,14 @@ img{
 /* .lugar{} */
 .humedadyviento
 {
-  width: 50%;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+  width: 30%;
+  
 }
 .humedad{
   width: ;
