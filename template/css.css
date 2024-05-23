@@ -1,7 +1,7 @@
 
 *{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   margin: 0;
 
   padding: 0;
@@ -112,7 +112,4 @@ gap: 10px;
 .imgdia{
   width: 45px;
   height: 45px;
-}
-.imgday img{
-  width: 100%;
 }
