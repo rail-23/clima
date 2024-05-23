@@ -1,0 +1,62 @@
+*{
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+}
+.weather-card{
+  /* border: 1px solid black; */
+  padding: 2rem;
+  max-width: 800px;
+  height: 500px;
+  margin: 0 auto ;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.weather-side{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  border-radius: 40px;
+background: #fafafa;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+}
+.info-side{
+  height: 50%;
+  border-radius: 40px;
+background: #fafafa;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+}
+.today{
+  width: 50%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.clima-icono{
+  display: flex;
+}
+.grados{
+  margin: auto;
+  font-size: 5rem;
+}
+.iconoclima{
+  width: 100px;
+  height: 100px;
+}
+img{
+  width: 100%;
+}
+/* .lugar{} */
+.humedadyviento
+{
+  width: 50%;
+}
+.humedad{
+  width: ;
+}

@@ -1,0 +1,28 @@
+*{
+  /* border: 1px solid black; */
+  
+}
+.weather-card{
+  /* border: 1px solid black; */
+  padding: 2rem;
+  max-width: 800px;
+  height: 500px;
+  margin: 0 auto ;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.weather-side{
+  height: 50%;
+  border-radius: 40px;
+background: #fafafa;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+}
+.info-side{
+  height: 50%;
+  border-radius: 40px;
+background: #fafafa;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+}
