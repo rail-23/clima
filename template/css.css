@@ -1,8 +1,9 @@
+
 *{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0;
-  color-scheme: ;
+
   padding: 0;
   box-sizing: border-box;  
 }
@@ -10,14 +11,34 @@
   /* border: 1px solid black; */
   padding: 2rem;
   max-width: 700px;
-  height: 400px;
   margin: 0 auto ;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.weather-side{
+.climahead{
+  
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.climafood{
+
+  height: 100px;
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+  scrollbar-width: auto;
+  
+  scrollbar-color: rgb(125, 125, 125) rgba(255, 255, 255, 0);
+}
+
+
+.weather-side{
+  gap: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 80%;
@@ -27,6 +48,7 @@ box-shadow:  20px 20px 60px #bebebe,
              -20px -20px 60px #ffffff;
 }
 .info-side{
+  padding: 20px;
   height: 30%;
   border-radius: 40px;
 background: #fafafa;
@@ -68,9 +90,7 @@ img{
   width: 30%;
   
 }
-.humedad{
-  width: ;
-}
+
 .week{
   display: flex;
   align-items: center;
@@ -82,5 +102,17 @@ display: flex;
 gap: 10px;
 }
 .day{
+  width: 4rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.imgdia{
+  width: 45px;
+  height: 45px;
+}
+.imgday img{
+  width: 100%;
 }
