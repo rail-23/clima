@@ -322,6 +322,7 @@ const getWeatherDetails =(cityName,lat,lon)=>{
 
 /*funcion para obtener el contenido de la barra de busqueda(input) y las coordenadas de la ciudad a buscar*/
 searchButton.addEventListener('click', function () {
+
   CardDivs.innerHTML="";
   var cityName = inputSearch.value.trim(); //obtenemos el contenido de input "la ciudad" y con trin()borramos los espacios
   if(!cityName)return;
