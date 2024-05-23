@@ -272,74 +272,83 @@ const searchButton=document.querySelector('.BTNsearch');
 const CardDivs=document.querySelector('.CardInsert');
 const inputSearch = document.getElementById('city');
 
-const createWeathercard = (wheatherItem)=>{
-  return`          
-  <weather-card
-  class="card"
-  humedad="${wheatherItem.main.humidity}"
-  viento="${wheatherItem.wind.speed}"
-  ubicacion="Santa cruz de la Sierra"
-  imagen="https://openweathermap.org/img/wn/${wheatherItem.weather[0].icon}@2x.png"
-  dia="${wheatherItem.dt_txt.split(" ")[0]}"
-  temp="${(wheatherItem.main.temp - 273.15).toFixed(2)}"
-  day1="Lunes"
-  day1temp="24"
-  day2="martes"
-  day2temp="25"
-  day3="miercoles"
-  day3temp="15"
-  day4="jueves"
-  day4temp="18"
-></weather-card>`;
+const getDayName = (dateString) => {
+  const date = new Date(dateString);
+  const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado','Domingo'];
+  return days[date.getDay()];
 }
 
-const getWeatherDetails =(cityName,lat,lon)=>{
-  const API_Weather=`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}`;
+const createWeathercard = (weatherItem, dailyForecasts) => {
+  return `
+  <weather-card
+  class="card"
+  humedad="${weatherItem.main.humidity}"
+  viento="${weatherItem.wind.speed}"
+  ubicacion="${weatherItem.name}"
+  imagen="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png"
+  dia="${getDayName(dailyForecasts[0].date)}"
+  temp="${(weatherItem.main.temp - 273.15).toFixed(2)}"
+  day1="${getDayName(dailyForecasts[1].date)}"
+  day1temp="${(dailyForecasts[1].temp - 273.15).toFixed(2)}"
+  day2="${getDayName(dailyForecasts[2].date)}"
+  day2temp="${(dailyForecasts[2].temp - 273.15).toFixed(2)}"
+  day3="${getDayName(dailyForecasts[3].date)}"
+  day3temp="${(dailyForecasts[3].temp - 273.15).toFixed(2)}"
+  day4="${getDayName(dailyForecasts[4].date)}"
+  day4temp="${(dailyForecasts[4].temp - 273.15).toFixed(2)}"
+  ></weather-card>`;
+}
+const getWeatherDetails = (cityName, lat, lon) => {
+  const API_Weather = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}`;
 
   fetch(API_Weather)
-  .then(res => res.json())
-  .then(data => {
+    .then(res => res.json())
+    .then(data => {
+      const weatherItem = data.list[0]; // Primer pronóstico
+      weatherItem.name = cityName; //nombre de la ciudad
 
-    // filtramos los pronosticos para obtener un solo pronostico por dia, por 6 dias
+      const uniqueForecastDays = []; 
+      const dailyForecasts = data.list.filter(forecast => {
+        const forecastDate = new Date(forecast.dt_txt).getDate();
+        if (!uniqueForecastDays.includes(forecastDate)) {
+          uniqueForecastDays.push(forecastDate);
+          return true;
+        }
+        return false;
+      }).map(forecast => ({
+        date: forecast.dt_txt.split(" ")[0],
+        temp: forecast.main.temp
+      }));
 
-    const uniqueForecastDays = []; 
-    
-    const FiveForecastDays = data.list.filter(forecast=>{
-      const forecastDate=  new Date(forecast.dt_txt).getDate(); 
-      if(!uniqueForecastDays.includes(forecastDate)){
-        return uniqueForecastDays.push(forecastDate);
+      if (dailyForecasts.length >= 5) {
+        CardDivs.insertAdjacentHTML("beforeend", createWeathercard(weatherItem, dailyForecasts));
+      } else {
+        alert("No se encontraron suficientes pronósticos diarios.");
       }
-    });
-    console.log(FiveForecastDays);
-    FiveForecastDays.forEach(wheatherItem => {
-      CardDivs.insertAdjacentHTML("beforeend",createWeathercard(wheatherItem));
-    });
-  })
-  .catch(()=>{
-    alert("se a encontrado un error mientras de buscaba la coordenada");
-  })
+      console.log(dailyForecasts);
+      })
+      .catch(() => {
+        alert("Se ha encontrado un error mientras se buscaba el pronóstico del clima");
+      });
 }
 
 /*funcion para obtener el contenido de la barra de busqueda(input) y las coordenadas de la ciudad a buscar*/
 searchButton.addEventListener('click', function () {
-
-  CardDivs.innerHTML="";
-  var cityName = inputSearch.value.trim(); //obtenemos el contenido de input "la ciudad" y con trin()borramos los espacios
-  if(!cityName)return;
+  CardDivs.innerHTML = "";
+  const cityName = inputSearch.value.trim();
+  if (!cityName) return;
   const CODE_URL_API = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${ApiKey}`;
 
-  fetch(CODE_URL_API) //obtenemos las coordenadas de la ciudad (latitud,longitud y nombre) que esta en la API
-  .then(res=>res.json())
-  .then(data=>{
-    if(!data.length) return alert(`no se encontraron las coordenadas para:${cityName}`);
-    const { name, lat, lon } = data[0];
-    getWeatherDetails(name,lat,lon);
-    //console.log(data[0]);
-  })
-  .catch(()=>{
-  alert("se a encontrado un error mientras de buscaba una coodenada")
-  })
-
+  fetch(CODE_URL_API)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.length) return alert(`No se encontraron las coordenadas para: ${cityName}`);
+      const { name, lat, lon } = data[0];
+      getWeatherDetails(name, lat, lon);
+    })
+    .catch(() => {
+      alert("Se ha encontrado un error mientras se buscaba una coordenada");
+    })
 });
 
 
