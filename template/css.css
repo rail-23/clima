@@ -40,6 +40,8 @@ box-shadow:  20px 20px 60px #bebebe,
 }
 .clima-icono{
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .grados{
   margin: auto;
