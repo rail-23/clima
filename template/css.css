@@ -1,6 +1,6 @@
 *{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   margin: 0;
   color-scheme: ;
   padding: 0;
@@ -9,8 +9,8 @@
 .weather-card{
   /* border: 1px solid black; */
   padding: 2rem;
-  max-width: 800px;
-  height: 500px;
+  max-width: 700px;
+  height: 400px;
   margin: 0 auto ;
   display: flex;
   flex-direction: column;
@@ -20,14 +20,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50%;
+  height: 80%;
   border-radius: 40px;
 background: #fafafa;
 box-shadow:  20px 20px 60px #bebebe,
              -20px -20px 60px #ffffff;
 }
 .info-side{
-  height: 50%;
+  height: 30%;
   border-radius: 40px;
 background: #fafafa;
 box-shadow:  20px 20px 60px #bebebe,
@@ -70,4 +70,17 @@ img{
 }
 .humedad{
   width: ;
+}
+.week{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.week-cont{
+display: flex;
+gap: 10px;
+}
+.day{
+  text-align: center;
 }
