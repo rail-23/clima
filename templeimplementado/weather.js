@@ -63,7 +63,7 @@ const createWeathercard = (weatherItem, dailyForecasts) => {
       <div lugar>${weatherItem.name}</div>
     </div>
     <div class="humedadyviento">
-      <div>${weatherItem.weather[0].description}</div>
+      <div>ALERTA: ${weatherItem.weather[0].description}</div>
       <div class="humedad">${weatherItem.main.humidity}%</div>
       <div class="humedad">${weatherItem.wind.speed} m/s</div>
     </div>
