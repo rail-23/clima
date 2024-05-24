@@ -1,0 +1,60 @@
+/* *{
+  border: 1px solid black;
+} */
+.container{
+    padding: 0 30px;
+    display: flex;
+    justify-content: center;
+}
+.navbar{
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.navbar .inputcont{
+  width: 400px;
+  padding:0  30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cityInput{
+  width: 100%;
+    border-radius: 20px;
+    background: #f2f2f2;
+    box-shadow: inset 20px 20px 60px #f7f7f7,
+                inset -20px -20px 60px #ffffff;
+                height: 30px;
+               
+                padding-left: 30px;
+}
+
+
+.BTNsearch {
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: rgb(230, 230, 230);
+    box-shadow: rgba(0, 0, 0, 0.141) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+  }
+  
+  .BTNsearch:hover {
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+  }
+  
+  .BTNsearch:active {
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+  }
