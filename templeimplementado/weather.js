@@ -229,9 +229,10 @@ const createWeathercard = (weatherItem, dailyForecasts) => {
 </div>
   `;
 }
+
 const getWeatherDetails = (cityName, lat, lon) => {
   const API_Weather = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}`;
-  
+
   console.log(API_Weather)
   fetch(API_Weather)
     .then(res => res.json())
