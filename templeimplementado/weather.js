@@ -35,7 +35,7 @@ class SellButton extends HTMLElement {
 
 
 }
-customElements.define('sell-button', SellButton);
+customElements.define('sell-weather', SellButton);
 
 
 
