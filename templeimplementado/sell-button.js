@@ -46,22 +46,6 @@ const getDayName = (dateString) => {
 }
 
 const createWeathercard = (weatherItem, dailyForecasts) => {
-  
-  const hourlyForecasts = dailyForecasts.slice(0, 24); // Obtener las primeras 24 horas
-
-  // Mapear las temperaturas por hora en el HTML
-  const hourlyTemperaturesHTML = hourlyForecasts.map(forecast => {
-    const forecastTime = new Date(forecast.date).getHours(); // Obtener la hora del pronóstico
-    const formattedHour = forecastTime < 10 ? `0${forecastTime}` : forecastTime; // Formatear la hora
-    return `
-      <div class="day">
-        <p>${formattedHour}:00</p>
-        <div class="tdia">${(forecast.temp - 273.15).toFixed(2)} °C</div>
-        <div class="imgdia"><img src="" alt="" /></div>
-      </div>
-    `;
-  }).join(''); 
-  
   return template.innerHTML =  `
   <link rel="stylesheet" href="./css.css">
 
@@ -79,14 +63,134 @@ const createWeathercard = (weatherItem, dailyForecasts) => {
       <div lugar>${weatherItem.name}</div>
     </div>
     <div class="humedadyviento">
-      <div>Alertas</div>
+      <div>${weatherItem.weather[0].description}</div>
       <div class="humedad">${weatherItem.main.humidity}%</div>
       <div class="humedad">${weatherItem.wind.speed} m/s</div>
     </div>
   </div>
   <div class="climafood">
 
-    ${hourlyTemperaturesHTML}
+  <div class="day">
+  <p>1:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>2:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>3:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>4:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>5:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>6:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>7:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>8:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>9:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>10:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>11:00am</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>12:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>13:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>14:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>15:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>16:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>17:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>18:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>19:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>20:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>21:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>22:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>23:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+<div class="day">
+  <p>24:00pm</p>
+  <div class="tdia">30°C</div>
+  <div class="imgdia"><img src="" alt="" /></div>
+</div>
+
 
   </div>
 </div>
@@ -178,127 +282,3 @@ searchButton.addEventListener('click', function () {
     })
     
 });
-
-/*
-<div class="day">
-      <p>1:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>2:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>3:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>4:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>5:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>6:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>7:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>8:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>9:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>10:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>11:00am</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>12:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>13:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>14:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>15:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>16:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>17:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>18:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>19:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>20:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>21:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>22:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>23:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-    <div class="day">
-      <p>24:00pm</p>
-      <div class="tdia">30°C</div>
-      <div class="imgdia"><img src="" alt="" /></div>
-    </div>
-
-*/
