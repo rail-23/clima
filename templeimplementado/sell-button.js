@@ -16,6 +16,7 @@ template.innerHTML = `
       <div lugar>Santa Cruz de la Sierra</div>
     </div>
     <div class="humedadyviento">
+      <div>Alertas</div>
       <div class="humedad">Humedad: 50</div>
       <div class="humedad">Viento: 30</div>
     </div>

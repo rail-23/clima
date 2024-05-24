@@ -55,7 +55,7 @@ box-shadow:  20px 20px 60px #bebebe,
              -20px -20px 60px #ffffff;
 }
 .today{
-  width: 70%;
+  width: 60%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -86,7 +86,7 @@ img{
   justify-content: center;
   align-items: start;
   gap: 10px;
-  width: 30%;
+  width: 40%;
   
 }
 
