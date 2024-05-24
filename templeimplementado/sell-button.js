@@ -1,6 +1,52 @@
+'use strict';
+const ApiKey='1bafec787c78a46d0d38f49740ef0c64';
+
+const cityInput=document.querySelector('.cityImput');
+const searchButton=document.querySelector('.BTNsearch');
+const CardDivs=document.querySelector('.CardInsert');
+const inputSearch = document.getElementById('city');
+
 const template = document.createElement('template');
-template.innerHTML = `
-<link rel="stylesheet" href="./css.css">
+
+
+class SellButton extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    static get observedAttributes() {
+        return ['text'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'text') {
+            this.shadowRoot.querySelector('#text').textContent = newValue;
+        }
+    }
+
+    connectedCallback() {
+        const textAttribute = this.getAttribute('text');
+        if (textAttribute) {
+            this.shadowRoot.querySelector('#text').textContent = textAttribute;
+        }
+    }
+
+
+}
+customElements.define('sell-button', SellButton);
+
+
+const getDayName = (dateString) => {
+  const date = new Date(dateString);
+  const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado','Domingo'];
+  return days[date.getDay()];
+}
+
+const createWeathercard = (weatherItem, dailyForecasts) => {
+  return template.innerHTML =  `
+  <link rel="stylesheet" href="./css.css">
 
 <div class="weather-card">
 <div class="weather-side">
@@ -8,17 +54,17 @@ template.innerHTML = `
     <div class="today">
       <div class="clima-icono">
         <div>
-          <p class="dia">Domingo</p>
-          <div class="grados">25°</div>
+          <p class="dia">${getDayName(dailyForecasts[0].date)}</p>
+          <div class="grados">${(weatherItem.main.temp - 273.15).toFixed(2)}°C</div>
         </div>
-        <div class="iconoclima"><img src="" alt="" /></div>
+        <div class="iconoclima"><img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" alt="" /></div>
       </div>
-      <div lugar>Santa Cruz de la Sierra</div>
+      <div lugar>${weatherItem.name}</div>
     </div>
     <div class="humedadyviento">
       <div>Alertas</div>
-      <div class="humedad">Humedad: 50</div>
-      <div class="humedad">Viento: 30</div>
+      <div class="humedad">${weatherItem.main.humidity}%</div>
+      <div class="humedad">${weatherItem.wind.speed} m/s</div>
     </div>
   </div>
   <div class="climafood">
@@ -108,7 +154,7 @@ template.innerHTML = `
       <div class="imgdia"><img src="" alt="" /></div>
     </div>
     <div class="day">
-      <p>18 am</p>
+      <p>18:00am</p>
       <div class="tdia">30°</div>
       <div class="imgdia"><img src="" alt="" /></div>
     </div>
@@ -150,65 +196,87 @@ template.innerHTML = `
   <div class="week">
     <div class="week-cont">
       <div class="day">
-        <p>lunes</p>
-        <div class="tdia">30°</div>
+        <p>${getDayName(dailyForecasts[1].date)}</p>
+        <div class="tdia">${(dailyForecasts[1].temp - 273.15).toFixed(2)} °C</div>
         <div class="imgdia"><img src="" alt="" /></div>
       </div>
       <div class="day">
-        <p>martes</p>
-        <div class="tdia">30°</div>
+        <p>${getDayName(dailyForecasts[2].date)}</p>
+        <div class="tdia">${(dailyForecasts[2].temp - 273.15).toFixed(2)} °C</div>
         <div class="imgdia"><img src="" alt="" /></div>
       </div>
       <div class="day">
-        <p>miercoles</p>
-        <div class="tdia">22°</div>
+        <p>${getDayName(dailyForecasts[3].date)}</p>
+        <div class="tdia">${(dailyForecasts[3].temp - 273.15).toFixed(2)} °C</div>
         <div class="imgdia"><img src="" alt="" /></div>
       </div>
       <div class="day">
-        <p>jueves</p>
-        <div class="tdia">17°</div>
+        <p>${getDayName(dailyForecasts[4].date)}</p>
+        <div class="tdia">${(dailyForecasts[4].temp - 273.15).toFixed(2)} °C</div>
         <div class="imgdia"><img src="" alt="" /></div>
       </div>
       <div class="day">
-        <p>Viernes</p>
-        <div class="tdia">17°</div>
-        <div class="imgdia"><img src="" alt="" /></div>
-      </div>
-      <div class="day">
-        <p>Sabado</p>
-        <div class="tdia">17°</div>
+        <p>${getDayName(dailyForecasts[5].date)}</p>
+        <div class="tdia">${(dailyForecasts[5].temp - 273.15).toFixed(2)} °C</div>
         <div class="imgdia"><img src="" alt="" /></div>
       </div>
     </div>
   </div>
 </div>
 </div>
-`;
-
-class SellButton extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
-    }
-
-    static get observedAttributes() {
-        return ['text'];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'text') {
-            this.shadowRoot.querySelector('#text').textContent = newValue;
-        }
-    }
-
-    connectedCallback() {
-        const textAttribute = this.getAttribute('text');
-        if (textAttribute) {
-            this.shadowRoot.querySelector('#text').textContent = textAttribute;
-        }
-    }
-
-
+  `;
 }
-customElements.define('sell-button', SellButton);
+const getWeatherDetails = (cityName, lat, lon) => {
+  const API_Weather = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}`;
+
+  fetch(API_Weather)
+    .then(res => res.json())
+    .then(data => {
+      const weatherItem = data.list[0]; // Primer pronóstico
+      weatherItem.name = cityName; //nombre de la ciudad
+
+      const uniqueForecastDays = []; 
+      const dailyForecasts = data.list.filter(forecast => {
+        const forecastDate = new Date(forecast.dt_txt).getDate();
+        if (!uniqueForecastDays.includes(forecastDate)) {
+          uniqueForecastDays.push(forecastDate);
+          return true;
+        }
+        return false;
+      }).map(forecast => ({
+        date: forecast.dt_txt.split(" ")[0],
+        temp: forecast.main.temp
+      }));
+
+      if (dailyForecasts.length >= 5) {
+        CardDivs.insertAdjacentHTML("beforeend", createWeathercard(weatherItem, dailyForecasts));
+      } else {
+        alert("No se encontraron suficientes pronósticos diarios.");
+      }
+      console.log(dailyForecasts);
+      })
+      .catch(() => {
+        alert("Se ha encontrado un error mientras se buscaba el pronóstico del clima");
+      });
+}
+
+/*funcion para obtener el contenido de la barra de busqueda(input) y las coordenadas de la ciudad a buscar*/
+searchButton.addEventListener('click', function () {
+  CardDivs.innerHTML = "";
+  const cityName = inputSearch.value.trim();
+  if (!cityName) return;
+  const CODE_URL_API = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${ApiKey}`;
+
+  fetch(CODE_URL_API)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.length) return alert(`No se encontraron las coordenadas para: ${cityName}`);
+      const { name, lat, lon } = data[0];
+      getWeatherDetails(name, lat, lon);
+      console.log(data);
+    })
+    .catch(() => {
+      alert("Se ha encontrado un error mientras se buscaba una coordenada");
+    })
+    
+});
